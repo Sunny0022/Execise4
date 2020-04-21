@@ -1,0 +1,308 @@
+C:\>mysql -u root -p
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.19 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employee           |
+| information_schema |
+| library            |
+| library_bak        |
+| multibranchlibrary |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sandwitch          |
+| sys                |
+| testing            |
+| vtapp              |
+| world              |
++--------------------+
+13 rows in set (0.01 sec)
+
+mysql> use employee;
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| branchdetails      |
+| code               |
+| employee           |
+| locations          |
+| rocky              |
+| sandwiches         |
+| tastes             |
+| testing_table      |
+| titlename          |
++--------------------+
+9 rows in set (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employee           |
+| information_schema |
+| library            |
+| library_bak        |
+| multibranchlibrary |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sandwitch          |
+| sys                |
+| testing            |
+| vtapp              |
+| world              |
++--------------------+
+13 rows in set (0.00 sec)
+
+mysql> use sandwitch
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_sandwitch |
++---------------------+
+| locations           |
+| sandwitches         |
+| tastes              |
++---------------------+
+3 rows in set (0.01 sec)
+
+mysql> desc tastes;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(30) | YES  |     | NULL    |       |
+| filling | varchar(30) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> select * from tastes;
++-------+---------+
+| name  | filling |
++-------+---------+
+| Brown | Turkey  |
+| Brown | Beef    |
+| Brown | Ham     |
+| Jones | Cheese  |
+| Green | Beef    |
+| Green | Turkey  |
+| Green | Cheese  |
++-------+---------+
+7 rows in set (0.02 sec)
+
+mysql> create table if not exists tastes_bak like tastes;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++---------------------+
+| Tables_in_sandwitch |
++---------------------+
+| locations           |
+| sandwitches         |
+| tastes              |
+| tastes_bak          |
++---------------------+
+4 rows in set (0.00 sec)
+
+mysql> desc tastes;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(30) | YES  |     | NULL    |       |
+| filling | varchar(30) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> desc tastes_bak;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(30) | YES  |     | NULL    |       |
+| filling | varchar(30) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from tastes;
++-------+---------+
+| name  | filling |
++-------+---------+
+| Brown | Turkey  |
+| Brown | Beef    |
+| Brown | Ham     |
+| Jones | Cheese  |
+| Green | Beef    |
+| Green | Turkey  |
+| Green | Cheese  |
++-------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from tastes_bak;
+Empty set (0.00 sec)
+
+mysql> insert tastes_bak select * from tastes;
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from tastes_bak;
++-------+---------+
+| name  | filling |
++-------+---------+
+| Brown | Turkey  |
+| Brown | Beef    |
+| Brown | Ham     |
+| Jones | Cheese  |
+| Green | Beef    |
+| Green | Turkey  |
+| Green | Cheese  |
++-------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from tastes;
++-------+---------+
+| name  | filling |
++-------+---------+
+| Brown | Turkey  |
+| Brown | Beef    |
+| Brown | Ham     |
+| Jones | Cheese  |
+| Green | Beef    |
+| Green | Turkey  |
+| Green | Cheese  |
++-------+---------+
+7 rows in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employee           |
+| information_schema |
+| library            |
+| library_bak        |
+| multibranchlibrary |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sandwitch          |
+| sys                |
+| testing            |
+| vtapp              |
+| world              |
++--------------------+
+13 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+
+C:\>mysqldump -u root -p sandwitch > C:/Users/vinlaptop/Downloads/backup.sql
+Enter password: *************
+
+C:\>mysqladmin -u root -p create sandwitch_BAK
+Enter password: *************
+
+C:\>mysql -u root -p sandwitch_BAK < C:/Users/vinlaptop/Downloads/backup.sql
+Enter password: *************
+
+C:\>mysql -u root -p
+Enter password: *************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.19 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employee           |
+| information_schema |
+| library            |
+| library_bak        |
+| multibranchlibrary |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sandwitch          |
+| sandwitch_bak      |
+| sys                |
+| testing            |
+| vtapp              |
+| world              |
++--------------------+
+14 rows in set (0.01 sec)
+
+mysql> use sandwitch_bak;
+Database changed
+mysql> show tables;
++-------------------------+
+| Tables_in_sandwitch_bak |
++-------------------------+
+| locations               |
+| sandwitches             |
+| tastes                  |
+| tastes_bak              |
++-------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from locations;
++---------+----------+---------------+
+| Lname   | phone    | Address       |
++---------+----------+---------------+
+| Lincoln | 683 4523 | Lincoln Place |
+| ONeills | 674 2134 | Pearse St     |
+| Old Nag | 767 8132 | Dame St       |
+| Buttery | 702 3421 | College ST    |
++---------+----------+---------------+
+4 rows in set (0.00 sec)
+
+mysql> select * from tastes;
++-------+---------+
+| name  | filling |
++-------+---------+
+| Brown | Turkey  |
+| Brown | Beef    |
+| Brown | Ham     |
+| Jones | Cheese  |
+| Green | Beef    |
+| Green | Turkey  |
+| Green | Cheese  |
++-------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from tastes_bak;
++-------+---------+
+| name  | filling |
++-------+---------+
+| Brown | Turkey  |
+| Brown | Beef    |
+| Brown | Ham     |
+| Jones | Cheese  |
+| Green | Beef    |
+| Green | Turkey  |
+| Green | Cheese  |
++-------+---------+
+7 rows in set (0.00 sec)
+
+mysql>
