@@ -212,10 +212,10 @@ Bye
 C:\>mysqldump -u root -p sandwitch > C:/Users/vinlaptop/Downloads/backup.sql
 Enter password: *************
 
-C:\>mysqladmin -u root -p create sandwitch_BAK
+C:\>mysqladmin -u root -p create restored
 Enter password: *************
 
-C:\>mysql -u root -p sandwitch_BAK < C:/Users/vinlaptop/Downloads/backup.sql
+C:\>mysql -u root -p restored < C:/Users/vinlaptop/Downloads/backup.sql
 Enter password: *************
 
 C:\>mysql -u root -p
@@ -245,7 +245,7 @@ mysql> show databases;
 | performance_schema |
 | sakila             |
 | sandwitch          |
-| sandwitch_bak      |
+| restored      |
 | sys                |
 | testing            |
 | vtapp              |
@@ -253,11 +253,11 @@ mysql> show databases;
 +--------------------+
 14 rows in set (0.01 sec)
 
-mysql> use sandwitch_bak;
+mysql> use restored;
 Database changed
 mysql> show tables;
 +-------------------------+
-| Tables_in_sandwitch_bak |
+| Tables_in_restored      |
 +-------------------------+
 | locations               |
 | sandwitches             |
