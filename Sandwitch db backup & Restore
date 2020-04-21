@@ -245,7 +245,7 @@ mysql> show databases;
 | performance_schema |
 | sakila             |
 | sandwitch          |
-| restored      |
+| restored           |
 | sys                |
 | testing            |
 | vtapp              |
